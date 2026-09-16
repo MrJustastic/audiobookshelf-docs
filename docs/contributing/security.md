@@ -19,7 +19,9 @@ The following should not be reported as a vulnerability.
 
 ### No authentication on image retrieval
 
-By design, there is no authentication to retrieve images from the Audiobookshelf server. This allows for image assets to be cached by clients and [greatly improves server performance](https://github.com/advplyr/audiobookshelf/discussions/3570). Author and Cover images must be retrieved by UUID, which is randomly generated and not based on the name of the item. 
+By design, there is no authentication to retrieve images from the Audiobookshelf server. This [greatly improves server performance](https://github.com/advplyr/audiobookshelf/discussions/3570). Author and Cover images must be retrieved by UUID, which is randomly generated and not based on the name of the item.
+
+Audio files are accessible without authentication when using an open session.
 
 If other media files are accessible without authentication, that should still be reported.
 
