@@ -26,3 +26,11 @@ If other media files are accessible without authentication, that should still be
 ### Vue2 web client is EOL
 
 The web client was built on Vue 2 and Nuxt 2, both of which have been EOL since 2023. The web client is currently being rewritten and [migrated to React](https://github.com/audiobookshelf/audiobookshelf-client-react). There is no need to report the framework and associated packages are old.
+
+### Outdated libraries
+
+There are a number of old libraries related to the EOL Vue2 web client. There is no need to report these packages as out of date.
+
+### Outdated E-Reader
+
+The EOL Vue2 web client uses old libraries for MOBI (https://kdp.amazon.com/en_US/help/topic/GULSQMHU5MNH4EZM) and AZW3 (https://en.wikipedia.org/wiki/Kindle_File_Format), which Amazon no longer supports. The software libraries for Audiobookshelf have already been updated in the new React client.
