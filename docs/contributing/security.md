@@ -5,11 +5,11 @@ title: Security Reports
 sidebar_position: 10
 ---
 
-Security issues should be privately disclosed using GitHub's vulnerability reporter in the respective repository. You can also reach out directly through e-mail or Discord to disclose a vulnerability if you are unable to use GitHub.
+Security issues should be privately disclosed using GitHub's vulnerability reporter in the respective repository. You can also reach out directly through e-mail or Discord to disclose a vulnerability if you are unable to use GitHub. Do not post the vulnerabilities in a public channel on Discord.
 
 Security vulnerabilities with the server should be reported [here](https://github.com/advplyr/audiobookshelf/security).
 
-Security vulnerabilities with the apps should be reported [here](https://github.com/advplyr/audiobookshelf-app/security).
+Security vulnerabilities with the mobile apps should be reported [here](https://github.com/advplyr/audiobookshelf-app/security).
 
 It may take some time to review and respond to vulnerabilities due to an increasing number of reports with the increased usage of AI tools.
 
