@@ -33,6 +33,6 @@ The web client was built on Vue 2 and Nuxt 2, both of which have been EOL since 
 
 There are a number of old libraries related to the EOL Vue 2 web client. Do not report these packages solely because they are out of date (see above).
 
-### Outdated e-reader support
+### E-reader vulnerabilities
 
-The EOL Vue 2 web client uses old libraries for [MOBI](https://kdp.amazon.com/en_US/help/topic/GULSQMHU5MNH4EZM) and [AZW3](https://en.wikipedia.org/wiki/Kindle_File_Format), formats Amazon no longer supports. The new React client already uses updated libraries (see above).
+The EOL Vue 2 web client displays [MOBI](https://kdp.amazon.com/en_US/help/topic/GULSQMHU5MNH4EZM) and [AZW3](https://en.wikipedia.org/wiki/Kindle_File_Format) files in an iframe without sanitizing their contents. The React client uses a safer e-reader implementation (see above).
