@@ -82,10 +82,10 @@ export const communityApps = [
   },
   {
     name: 'Lorecaster',
-    platforms: ['iOS', 'iPadOS', 'macOS'],
+    platforms: ['iOS', 'iPadOS'],
     href: 'https://hyperscribe.co/lorecaster/',
     tags: ['Audiobooks', 'Podcasts'],
     description:
-      'Native iPhone, iPad, and Mac client for Audiobookshelf. Streaming is free. CarPlay, progress sync, collections, playlists, series grouping, chapters, sleep timer, and offline downloads. Also includes a Mac library and server if you want one without Docker.',
+      'Native iPhone and iPad client for Audiobookshelf. Streaming is free. CarPlay, progress sync, collections, playlists, series grouping, chapters, sleep timer, and offline downloads.',
   },
 ];
