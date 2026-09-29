@@ -1,6 +1,8 @@
-// Optional field: oidcRedirectUri - the redirect URI the app uses for OpenID Connect
-// logins (e.g. 'myapp://oauth'). Shown on the app's card and in the list of redirect
-// URIs on the OpenID Connect Authentication page.
+// Optional fields:
+// - auth: the sign-in methods the app supports, any of 'OIDC', 'API Key' and 'Password'.
+//   Shown on the app's card and used by the Authentication filter.
+// - oidcRedirectUri: the redirect URI the app uses for OIDC logins (e.g. 'myapp://oauth').
+//   Listed on the OpenID Connect Authentication page.
 export const communityApps = [
   {
     name: 'plappa',

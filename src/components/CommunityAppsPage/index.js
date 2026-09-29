@@ -12,6 +12,7 @@ const mediaTypes = [
 const mediaTypeIcons = Object.fromEntries(
   mediaTypes.map(({label, icon}) => [label, icon]),
 );
+const authMethods = ['OIDC', 'API Key', 'Password'];
 
 function AppCard({app}) {
   const sortedPlatforms = [...app.platforms].sort((a, b) => a.localeCompare(b));
@@ -43,10 +44,17 @@ function AppCard({app}) {
       </div>
 
       <div className={styles.cardBottom}>
-        {app.oidcRedirectUri ? (
-          <p className={styles.oidcRedirectUri}>
-            OIDC redirect URI: <code>{app.oidcRedirectUri}</code>
-          </p>
+        {app.auth?.length ? (
+          <div className={styles.authRow} aria-label={`${app.name} sign-in methods`}>
+            {authMethods
+              .filter((method) => app.auth.includes(method))
+              .map((method) => (
+                <span key={method} className={styles.authItem}>
+                  <Icon icon="mdi:check" aria-hidden="true" />
+                  {method}
+                </span>
+              ))}
+          </div>
         ) : null}
         <div className={styles.platformRow} aria-label={`${app.name} platforms`}>
           {sortedPlatforms.map((platform) => (
@@ -73,6 +81,7 @@ export default function CommunityAppsPage() {
 
   const [selectedPlatforms, setSelectedPlatforms] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
+  const [selectedAuth, setSelectedAuth] = useState([]);
 
   const visibleApps = [...communityApps]
     .filter((app) =>
@@ -84,6 +93,11 @@ export default function CommunityAppsPage() {
       selectedTags.length === 0
         ? true
         : selectedTags.every((tag) => app.tags?.includes(tag)),
+    )
+    .filter((app) =>
+      selectedAuth.length === 0
+        ? true
+        : selectedAuth.every((method) => app.auth?.includes(method)),
     )
     .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -155,6 +169,40 @@ export default function CommunityAppsPage() {
                 }>
                 <Icon icon={mediaType.icon} aria-hidden="true" />
                 <span>{mediaType.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className={styles.filterGroup}>
+        <div className={styles.filterLabel}>Authentication</div>
+        <div className={styles.filters} aria-label="Filter by authentication method">
+          <button
+            type="button"
+            className={
+              selectedAuth.length === 0
+                ? styles.filterButtonActive
+                : styles.filterButton
+            }
+            onClick={() => setSelectedAuth([])}>
+            All
+          </button>
+          {authMethods.map((method) => {
+            const active = selectedAuth.includes(method);
+            return (
+              <button
+                key={method}
+                type="button"
+                className={active ? styles.filterButtonActive : styles.filterButton}
+                onClick={() =>
+                  setSelectedAuth((current) =>
+                    current.includes(method)
+                      ? current.filter((item) => item !== method)
+                      : [...current, method],
+                  )
+                }>
+                {method}
               </button>
             );
           })}
