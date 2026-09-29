@@ -38,6 +38,14 @@ export const communityApps = [
       'A native Audiobookshelf client for HarmonyOS, supporting mobile phones, tablets, and PC/2in1.',
   },
   {
+    name: 'Lissen',
+    platforms: ['Android'],
+    href: 'https://github.com/GrakovNe/lissen-android',
+    tags: ['Audiobooks', 'Podcasts'],
+    description:
+      'A clean, minimalistic Audiobookshelf client for Android and Android Auto. Stream or download audiobooks and podcasts, with cloud sync of progress across devices.',
+  },
+  {
     name: 'AudioBooth',
     platforms: ['iOS', 'iPadOS', 'watchOS', 'macOS'],
     href: 'https://github.com/AudioBooth/AudioBooth',
