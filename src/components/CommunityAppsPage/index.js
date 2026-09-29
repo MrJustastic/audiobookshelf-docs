@@ -43,6 +43,11 @@ function AppCard({app}) {
       </div>
 
       <div className={styles.cardBottom}>
+        {app.oidcRedirectUri ? (
+          <p className={styles.oidcRedirectUri}>
+            OIDC redirect URI: <code>{app.oidcRedirectUri}</code>
+          </p>
+        ) : null}
         <div className={styles.platformRow} aria-label={`${app.name} platforms`}>
           {sortedPlatforms.map((platform) => (
             <span className={styles.platformBadge}>{platform}</span>
