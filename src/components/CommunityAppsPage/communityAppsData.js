@@ -1,8 +1,10 @@
 // Optional fields:
-// - auth: the sign-in methods the app supports, any of 'OIDC', 'API Key' and 'Password'.
-//   Shown on the app's card and used by the Authentication filter.
 // - oidcRedirectUri: the redirect URI the app uses for OIDC logins (e.g. 'myapp://oauth').
-//   Listed on the OpenID Connect Authentication page.
+//   Must be unique to the app: never 'audiobookshelf://', which belongs to the official
+//   app. Adds an OIDC pill to the app's card, and the URI is listed on the OpenID
+//   Connect Authentication page.
+// - apiKey: true if the app can sign in with an Audiobookshelf API key.
+//   Adds an API Key pill to the app's card.
 export const communityApps = [
   {
     name: 'plappa',

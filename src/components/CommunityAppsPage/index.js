@@ -12,7 +12,10 @@ const mediaTypes = [
 const mediaTypeIcons = Object.fromEntries(
   mediaTypes.map(({label, icon}) => [label, icon]),
 );
-const authMethods = ['OIDC', 'API Key', 'Password'];
+const signInMethods = [
+  {label: 'OIDC', icon: 'simple-icons:openid', supportedBy: (app) => Boolean(app.oidcRedirectUri)},
+  {label: 'API Key', icon: 'mdi:key-variant', supportedBy: (app) => Boolean(app.apiKey)},
+];
 
 function AppCard({app}) {
   const sortedPlatforms = [...app.platforms].sort((a, b) => a.localeCompare(b));
@@ -44,22 +47,18 @@ function AppCard({app}) {
       </div>
 
       <div className={styles.cardBottom}>
-        {app.auth?.length ? (
-          <div className={styles.authRow} aria-label={`${app.name} sign-in methods`}>
-            {authMethods
-              .filter((method) => app.auth.includes(method))
-              .map((method) => (
-                <span key={method} className={styles.authItem}>
-                  <Icon icon="mdi:check" aria-hidden="true" />
-                  {method}
-                </span>
-              ))}
-          </div>
-        ) : null}
         <div className={styles.platformRow} aria-label={`${app.name} platforms`}>
           {sortedPlatforms.map((platform) => (
             <span className={styles.platformBadge}>{platform}</span>
           ))}
+          {signInMethods
+            .filter(({supportedBy}) => supportedBy(app))
+            .map(({label, icon}) => (
+              <span key={label} className={styles.signInBadge} title="Sign-in method">
+                <Icon icon={icon} aria-hidden="true" />
+                {label}
+              </span>
+            ))}
         </div>
       </div>
     </a>
@@ -81,7 +80,7 @@ export default function CommunityAppsPage() {
 
   const [selectedPlatforms, setSelectedPlatforms] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
-  const [selectedAuth, setSelectedAuth] = useState([]);
+  const [selectedSignIn, setSelectedSignIn] = useState([]);
 
   const visibleApps = [...communityApps]
     .filter((app) =>
@@ -95,9 +94,11 @@ export default function CommunityAppsPage() {
         : selectedTags.every((tag) => app.tags?.includes(tag)),
     )
     .filter((app) =>
-      selectedAuth.length === 0
+      selectedSignIn.length === 0
         ? true
-        : selectedAuth.every((method) => app.auth?.includes(method)),
+        : signInMethods
+            .filter(({label}) => selectedSignIn.includes(label))
+            .every(({supportedBy}) => supportedBy(app)),
     )
     .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -140,72 +141,75 @@ export default function CommunityAppsPage() {
 
       </div>
 
-      <div className={styles.filterGroup}>
-        <div className={styles.filterLabel}>Media Types</div>
-        <div className={styles.filters} aria-label="Filter by media type">
-          <button
-            type="button"
-            className={
-              selectedTags.length === 0
-                ? styles.filterButtonActive
-                : styles.filterButton
-            }
-            onClick={() => setSelectedTags([])}>
-            All
-          </button>
-          {mediaTypes.map((mediaType) => {
-            const active = selectedTags.includes(mediaType.label);
-            return (
-              <button
-                key={mediaType.label}
-                type="button"
-                className={active ? styles.filterButtonActive : styles.filterButton}
-                onClick={() =>
-                  setSelectedTags((current) =>
-                    current.includes(mediaType.label)
-                      ? current.filter((item) => item !== mediaType.label)
-                      : [...current, mediaType.label],
-                  )
-                }>
-                <Icon icon={mediaType.icon} aria-hidden="true" />
-                <span>{mediaType.label}</span>
-              </button>
-            );
-          })}
+      <div className={styles.filterRow}>
+        <div className={styles.filterGroup}>
+          <div className={styles.filterLabel}>Media Types</div>
+          <div className={styles.filters} aria-label="Filter by media type">
+            <button
+              type="button"
+              className={
+                selectedTags.length === 0
+                  ? styles.filterButtonActive
+                  : styles.filterButton
+              }
+              onClick={() => setSelectedTags([])}>
+              All
+            </button>
+            {mediaTypes.map((mediaType) => {
+              const active = selectedTags.includes(mediaType.label);
+              return (
+                <button
+                  key={mediaType.label}
+                  type="button"
+                  className={active ? styles.filterButtonActive : styles.filterButton}
+                  onClick={() =>
+                    setSelectedTags((current) =>
+                      current.includes(mediaType.label)
+                        ? current.filter((item) => item !== mediaType.label)
+                        : [...current, mediaType.label],
+                    )
+                  }>
+                  <Icon icon={mediaType.icon} aria-hidden="true" />
+                  <span>{mediaType.label}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
 
-      <div className={styles.filterGroup}>
-        <div className={styles.filterLabel}>Authentication</div>
-        <div className={styles.filters} aria-label="Filter by authentication method">
-          <button
-            type="button"
-            className={
-              selectedAuth.length === 0
-                ? styles.filterButtonActive
-                : styles.filterButton
-            }
-            onClick={() => setSelectedAuth([])}>
-            All
-          </button>
-          {authMethods.map((method) => {
-            const active = selectedAuth.includes(method);
-            return (
-              <button
-                key={method}
-                type="button"
-                className={active ? styles.filterButtonActive : styles.filterButton}
-                onClick={() =>
-                  setSelectedAuth((current) =>
-                    current.includes(method)
-                      ? current.filter((item) => item !== method)
-                      : [...current, method],
-                  )
-                }>
-                {method}
-              </button>
-            );
-          })}
+        <div className={styles.filterGroup}>
+          <div className={styles.filterLabel}>Authentication</div>
+          <div className={styles.filters} aria-label="Filter by authentication method">
+            <button
+              type="button"
+              className={
+                selectedSignIn.length === 0
+                  ? styles.filterButtonActive
+                  : styles.filterButton
+              }
+              onClick={() => setSelectedSignIn([])}>
+              All
+            </button>
+            {signInMethods.map(({label, icon}) => {
+              const active = selectedSignIn.includes(label);
+              return (
+                <button
+                  key={label}
+                  type="button"
+                  className={active ? styles.filterButtonActive : styles.filterButton}
+                  onClick={() =>
+                    setSelectedSignIn((current) =>
+                      current.includes(label)
+                        ? current.filter((item) => item !== label)
+                        : [...current, label],
+                    )
+                  }>
+                  <Icon icon={icon} aria-hidden="true" />
+                  <span>{label}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
