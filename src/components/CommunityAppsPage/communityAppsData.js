@@ -1,10 +1,16 @@
-// Optional fields:
-// - oidcRedirectUri: the redirect URI the app uses for OIDC logins (e.g. 'myapp://oauth').
-//   Must be unique to the app: never 'audiobookshelf://', which belongs to the official
-//   app. Adds an OIDC badge to the app's card, and the URI is listed on the OpenID
-//   Connect Authentication page.
-// - apiKey: true if the app can sign in with an Audiobookshelf API key.
-//   Adds an API Key badge to the app's card.
+// App fields:
+// Required:
+// - name: app name, used as the card title and list key.
+// - platforms: array of platform names shown on the card and used by the platform filter.
+// - href: URL opened when the card is selected.
+// - description: short summary shown on the card.
+// - tags: array of media types. Valid options are 'Audiobooks', 'Podcasts', or 'Ebooks'; shown as icons
+//   and used by the media type filter.
+// Optional:
+// - oidcRedirectUri: app-specific OIDC redirect URI (e.g. 'myapp://oauth'); adds an OIDC
+//   badge with the URI. Never use 'audiobookshelf://oauth', which belongs to the official app.
+// - apiKey: set to true if the app supports Audiobookshelf API key sign-in; adds an API Key
+//   badge. Omit otherwise.
 export const communityApps = [
   {
     name: 'plappa',
