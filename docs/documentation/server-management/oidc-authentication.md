@@ -65,13 +65,13 @@ Make sure you set up OIDC correctly and test it before turning off local authent
 
 :::
 
-To authorize third-party mobile apps via OAuth, add the app's redirect URI to the **Allowed Mobile Redirect URIs** field in Audiobookshelf (there is no need to add this to your OIDC provider). These are the redirect URIs of the official app and of the [third-party apps](/docs/documentation/community/community-apps) that have listed theirs:
+### Mobile App Redirect
+
+To authorize mobile apps with OAuth, add each app's redirect URI to the server's **Allowed Mobile Redirect URIs** field. You do not need to add these URIs to your OIDC provider. The official app's URI, `audiobookshelf://oauth`, is included by default. The list below includes redirect URIs for third-party apps. If an app is not listed, check its documentation or contact its developer.
 
 import OidcRedirectUris from '@site/src/components/OidcRedirectUris';
 
 <OidcRedirectUris />
-
-If your app isn't listed, check its documentation or contact the developer. Many apps use the format `<appname>://oauth`, but not all.
 
 ## User Management
 
