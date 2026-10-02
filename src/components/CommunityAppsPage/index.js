@@ -30,17 +30,22 @@ function AppCard({app}) {
       <div className={styles.cardTop}>
         <h2 className={styles.cardTitle}>
           <span>{app.name}</span>
-          {sortedTags.length ? (
-            <span
-              className={styles.titleTagRow}
-              aria-label={`${app.name} media types`}>
-              {sortedTags.map((tag) => (
-                <span key={tag} className={styles.titleTagIcon} title={tag}>
-                  <Icon icon={mediaTypeIcons[tag]} aria-hidden="true" />
+          <span className={styles.titleTagRow} aria-label={`${app.name} media types`}>
+            {sortedTags.map((tag) => (
+              <span key={tag} className={styles.titleTagIcon} title={tag}>
+                <Icon icon={mediaTypeIcons[tag]} aria-hidden="true" />
+              </span>
+            ))}
+          </span>
+          <span className={styles.authMethodRow} aria-label={`${app.name} sign-in methods`}>
+            {signInMethods
+              .filter(({supportedBy}) => supportedBy(app))
+              .map(({label, icon}) => (
+                <span key={label} className={styles.titleTagIcon} title={`${label} sign-in`}>
+                  <Icon icon={icon} aria-hidden="true" />
                 </span>
               ))}
-            </span>
-          ) : null}
+          </span>
         </h2>
 
         <p className={styles.cardDescription}>{app.description}</p>
@@ -49,16 +54,8 @@ function AppCard({app}) {
       <div className={styles.cardBottom}>
         <div className={styles.platformRow} aria-label={`${app.name} platforms`}>
           {sortedPlatforms.map((platform) => (
-            <span className={styles.platformBadge}>{platform}</span>
+            <span className={styles.cardBadge}>{platform}</span>
           ))}
-          {signInMethods
-            .filter(({supportedBy}) => supportedBy(app))
-            .map(({label, icon}) => (
-              <span key={label} className={styles.signInBadge} title="Sign-in method">
-                <Icon icon={icon} aria-hidden="true" />
-                {label}
-              </span>
-            ))}
         </div>
       </div>
     </a>
