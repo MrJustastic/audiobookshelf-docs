@@ -37,7 +37,10 @@ export const communityApps = [
   },
   {
     name: 'yaabsa',
-    auth: {oidc: {redirectUri: 'yaabsa://oauth'}},
+    auth: {
+      oidc: {redirectUri: 'yaabsa://oauth'},
+      apiKey: true,
+    },
     platforms: ['Android', 'AAOS', 'wearOS', 'Windows', 'Linux', 'Web', 'iOS', 'iPadOS', 'macOS'],
     href: 'https://github.com/Vito0912/yaabsa/',
     tags: ['Audiobooks', 'Podcasts', 'Ebooks'],
