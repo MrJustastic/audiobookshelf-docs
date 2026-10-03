@@ -14,6 +14,7 @@
 export const communityApps = [
   {
     name: 'plappa',
+    oidcRedirectUri: 'plappa://oauth',
     platforms: ['iOS', 'iPadOS'],
     href: 'https://plappa.me/',
     tags: ['Audiobooks', 'Podcasts'],
@@ -22,6 +23,7 @@ export const communityApps = [
   },
   {
     name: 'Still',
+    oidcRedirectUri: 'stillapp://oauth',
     platforms: ['iOS', 'iPadOS', 'watchOS', 'macOS'],
     href: 'https://github.com/7enChan/stillapp',
     tags: ['Audiobooks', 'Podcasts', 'Ebooks'],
@@ -36,6 +38,7 @@ export const communityApps = [
   },
   {
     name: 'yaabsa',
+    oidcRedirectUri: 'yaabsa://oauth',
     platforms: ['Android', 'AAOS', 'wearOS', 'Windows', 'Linux', 'Web', 'iOS', 'iPadOS', 'macOS'],
     href: 'https://github.com/Vito0912/yaabsa/',
     tags: ['Audiobooks', 'Podcasts', 'Ebooks'],
@@ -52,6 +55,7 @@ export const communityApps = [
   },
   {
     name: 'Lissen',
+    oidcRedirectUri: 'lissen://oauth',
     platforms: ['Android'],
     href: 'https://github.com/GrakovNe/lissen-android',
     tags: ['Audiobooks', 'Podcasts'],
@@ -60,6 +64,8 @@ export const communityApps = [
   },
   {
     name: 'AudioBooth',
+    oidcRedirectUri: 'audiobooth://oauth',
+    apiKey: true,
     platforms: ['iOS', 'iPadOS', 'watchOS', 'macOS'],
     href: 'https://github.com/AudioBooth/AudioBooth',
     tags: ['Audiobooks', 'Podcasts', 'Ebooks'],
@@ -67,6 +73,7 @@ export const communityApps = [
   },
   {
     name: 'Storii',
+    oidcRedirectUri: 'storii://oauth',
     platforms: ['Android'],
     href: 'https://github.com/likhithpraveenk/storii',
     tags: ['Audiobooks', 'Podcasts'],
