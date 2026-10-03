@@ -13,8 +13,8 @@ const mediaTypeIcons = Object.fromEntries(
   mediaTypes.map(({label, icon}) => [label, icon]),
 );
 const signInMethods = [
-  {label: 'OIDC', icon: 'simple-icons:openid', supportedBy: (app) => Boolean(app.oidcRedirectUri)},
-  {label: 'API Key', icon: 'mdi:key-variant', supportedBy: (app) => Boolean(app.apiKey)},
+  {key: 'oidc', label: 'OIDC', icon: 'simple-icons:openid'},
+  {key: 'apiKey', label: 'API Key', icon: 'mdi:key-variant'},
 ];
 
 function AppCard({app}) {
@@ -39,7 +39,7 @@ function AppCard({app}) {
           </span>
           <span className={styles.authMethodRow} aria-label={`${app.name} sign-in methods`}>
             {signInMethods
-              .filter(({supportedBy}) => supportedBy(app))
+              .filter(({key}) => app.auth?.[key])
               .map(({label, icon}) => (
                 <span key={label} className={styles.titleTagIcon} title={`${label} sign-in`}>
                   <Icon icon={icon} aria-hidden="true" />
@@ -95,7 +95,7 @@ export default function CommunityAppsPage() {
         ? true
         : signInMethods
             .filter(({label}) => selectedSignIn.includes(label))
-            .every(({supportedBy}) => supportedBy(app)),
+            .every(({key}) => Boolean(app.auth?.[key])),
     )
     .sort((a, b) => a.name.localeCompare(b.name));
 

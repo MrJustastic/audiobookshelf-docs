@@ -7,14 +7,13 @@
 // - tags: array of media types. Valid options are 'Audiobooks', 'Podcasts', or 'Ebooks'; shown as icons
 //   and used by the media type filter.
 // Optional:
-// - oidcRedirectUri: app-specific OIDC redirect URI (e.g. 'myapp://oauth'); adds an OIDC
-//   badge with the URI. Never use 'audiobookshelf://oauth', which belongs to the official app.
-// - apiKey: set to true if the app supports Audiobookshelf API key sign-in; adds an API Key
-//   badge. Omit otherwise.
+// - auth: object describing supported authentication methods. Each method is a key
+//   whose value is true, except oidc, which requires its app-specific redirectUri.
+//   Never use 'audiobookshelf://oauth', which belongs to the official app.
 export const communityApps = [
   {
     name: 'plappa',
-    oidcRedirectUri: 'plappa://oauth',
+    auth: {oidc: {redirectUri: 'plappa://oauth'}},
     platforms: ['iOS', 'iPadOS'],
     href: 'https://plappa.me/',
     tags: ['Audiobooks', 'Podcasts'],
@@ -23,7 +22,7 @@ export const communityApps = [
   },
   {
     name: 'Still',
-    oidcRedirectUri: 'stillapp://oauth',
+    auth: {oidc: {redirectUri: 'stillapp://oauth'}},
     platforms: ['iOS', 'iPadOS', 'watchOS', 'macOS'],
     href: 'https://github.com/7enChan/stillapp',
     tags: ['Audiobooks', 'Podcasts', 'Ebooks'],
@@ -38,7 +37,7 @@ export const communityApps = [
   },
   {
     name: 'yaabsa',
-    oidcRedirectUri: 'yaabsa://oauth',
+    auth: {oidc: {redirectUri: 'yaabsa://oauth'}},
     platforms: ['Android', 'AAOS', 'wearOS', 'Windows', 'Linux', 'Web', 'iOS', 'iPadOS', 'macOS'],
     href: 'https://github.com/Vito0912/yaabsa/',
     tags: ['Audiobooks', 'Podcasts', 'Ebooks'],
@@ -55,7 +54,7 @@ export const communityApps = [
   },
   {
     name: 'Lissen',
-    oidcRedirectUri: 'lissen://oauth',
+    auth: {oidc: {redirectUri: 'lissen://oauth'}},
     platforms: ['Android'],
     href: 'https://github.com/GrakovNe/lissen-android',
     tags: ['Audiobooks', 'Podcasts'],
@@ -64,8 +63,10 @@ export const communityApps = [
   },
   {
     name: 'AudioBooth',
-    oidcRedirectUri: 'audiobooth://oauth',
-    apiKey: true,
+    auth: {
+      oidc: {redirectUri: 'audiobooth://oauth'},
+      apiKey: true,
+    },
     platforms: ['iOS', 'iPadOS', 'watchOS', 'macOS'],
     href: 'https://github.com/AudioBooth/AudioBooth',
     tags: ['Audiobooks', 'Podcasts', 'Ebooks'],
@@ -73,7 +74,7 @@ export const communityApps = [
   },
   {
     name: 'Storii',
-    oidcRedirectUri: 'storii://oauth',
+    auth: {oidc: {redirectUri: 'storii://oauth'}},
     platforms: ['Android'],
     href: 'https://github.com/likhithpraveenk/storii',
     tags: ['Audiobooks', 'Podcasts'],

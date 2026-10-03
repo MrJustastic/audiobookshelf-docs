@@ -14,7 +14,7 @@ export default function OidcRedirectUris() {
   const apps = [
     ...officialApps,
     ...communityApps
-      .filter((app) => app.oidcRedirectUri)
+      .filter((app) => app.auth?.oidc?.redirectUri)
       .sort((a, b) => a.name.localeCompare(b.name)),
   ];
 
@@ -35,7 +35,7 @@ export default function OidcRedirectUris() {
               </a>
             </td>
             <td>
-              <code>{app.oidcRedirectUri}</code>
+              <code>{app.auth?.oidc?.redirectUri ?? app.oidcRedirectUri}</code>
             </td>
           </tr>
         ))}
