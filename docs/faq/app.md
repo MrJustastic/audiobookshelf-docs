@@ -45,6 +45,7 @@ Please adhere to the following:
 - Avoid using the Audiobookshelf name or logo in a manner that might suggest affiliation with the Audiobookshelf organization to users without permission from ABS maintainers.
 - The name Audiobookshelf should be written in one of the following ways: all lowercase `audiobookshelf`, first letter capitalized `Audiobookshelf`, or abbreviated all capitalized `ABS`.
 - Do not use the Audiobookshelf name or logo in any context that promotes or encourages piracy.
+- Apps that support OIDC must use their own unique redirect URI. Do not use `audiobookshelf://oauth`.
 
 ## Why do the e-reader settings not apply to my ebook?
 

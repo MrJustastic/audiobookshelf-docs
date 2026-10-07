@@ -1,6 +1,19 @@
+// App fields:
+// Required:
+// - name: app name, used as the card title and list key.
+// - platforms: array of platform names shown on the card and used by the platform filter.
+// - href: URL opened when the card is selected.
+// - description: short summary shown on the card.
+// - tags: array of media types. Valid options are 'Audiobooks', 'Podcasts', or 'Ebooks'; shown as icons
+//   and used by the media type filter.
+// Optional:
+// - auth: object describing supported authentication methods. Each method is a key
+//   whose value is true, except oidc, which requires its app-specific redirectUri.
+//   Never use 'audiobookshelf://oauth', which belongs to the official app.
 export const communityApps = [
   {
     name: 'plappa',
+    auth: {oidc: {redirectUri: 'plappa://oauth'}},
     platforms: ['iOS', 'iPadOS'],
     href: 'https://plappa.me/',
     tags: ['Audiobooks', 'Podcasts'],
@@ -9,6 +22,7 @@ export const communityApps = [
   },
   {
     name: 'Still',
+    auth: {oidc: {redirectUri: 'stillapp://oauth'}},
     platforms: ['iOS', 'iPadOS', 'watchOS', 'macOS'],
     href: 'https://github.com/7enChan/stillapp',
     tags: ['Audiobooks', 'Podcasts', 'Ebooks'],
@@ -23,6 +37,10 @@ export const communityApps = [
   },
   {
     name: 'yaabsa',
+    auth: {
+      oidc: {redirectUri: 'yaabsa://oauth'},
+      apiKey: true,
+    },
     platforms: ['Android', 'AAOS', 'wearOS', 'Windows', 'Linux', 'Web', 'iOS', 'iPadOS', 'macOS'],
     href: 'https://github.com/Vito0912/yaabsa/',
     tags: ['Audiobooks', 'Podcasts', 'Ebooks'],
@@ -38,7 +56,20 @@ export const communityApps = [
       'A native Audiobookshelf client for HarmonyOS, supporting mobile phones, tablets, and PC/2in1.',
   },
   {
+    name: 'Lissen',
+    auth: {oidc: {redirectUri: 'lissen://oauth'}},
+    platforms: ['Android'],
+    href: 'https://github.com/GrakovNe/lissen-android',
+    tags: ['Audiobooks', 'Podcasts'],
+    description:
+      'A clean, minimalistic Audiobookshelf client for Android and Android Auto. Stream or download audiobooks and podcasts, with cloud sync of progress across devices.',
+  },
+  {
     name: 'AudioBooth',
+    auth: {
+      oidc: {redirectUri: 'audiobooth://oauth'},
+      apiKey: true,
+    },
     platforms: ['iOS', 'iPadOS', 'watchOS', 'macOS'],
     href: 'https://github.com/AudioBooth/AudioBooth',
     tags: ['Audiobooks', 'Podcasts', 'Ebooks'],
@@ -46,6 +77,7 @@ export const communityApps = [
   },
   {
     name: 'Storii',
+    auth: {oidc: {redirectUri: 'storii://oauth'}},
     platforms: ['Android'],
     href: 'https://github.com/likhithpraveenk/storii',
     tags: ['Audiobooks', 'Podcasts'],
